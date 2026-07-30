@@ -1,4 +1,4 @@
-// Fungsi untuk memulai musik
+// Birthday Card
 function playMusic() {
   const music = document.getElementById('background-music');
   music.play();
