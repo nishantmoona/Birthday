@@ -1,100 +1,93 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" type="image/x-icon" href="./img/hbd.png">
   <title>Happy Birthday!</title>
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <audio id="birthdayMusic" src="./music/monokrom.mp3" preload="auto"></audio>
+  <audio id="background-music" src="./music/monokrom.mp3" preload="auto">
+  </audio>
 
-  <main class="page">
-    <div class="floating-shapes">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
+  <div class="bg" id="content">
+
+    <div class="container" id="timer">
+      <h5>Countdown to <x id='name'></x> birthday :</h5>
+      <ul>
+        <li><span id="days"></span>days</li>
+        <li><span id="hours"></span>Hours</li>
+        <li><span id="minutes"></span>Minutes</li>
+        <li><span id="seconds"></span>Seconds</li>
+      </ul>
     </div>
 
-    <section class="hero-card">
-      <p class="eyebrow">A special day for someone special</p>
+    <div id="slideSatu" class="animate__animated animate__slideInDown animate__slow d-none">
+      <img src="./img/hbd1.png" class="img">
+    </div>
 
-      <h1>Happy Birthday, <span id="personName">Dear Friend</span>!</h1>
+    <div id="slideDua"
+      class="slides d-none paper animate__zoomInDown animate__animated animate__delay-2s animate__slow">
+      <div class="paper-content">
+        <p id="teks1" class="teks"></p>
+      </div>
+    </div>
 
-      <p class="subtitle">
-        Wishing you a day filled with happiness, beautiful memories, laughter,
-        and everything that makes your heart smile.
-      </p>
+    <div id="slideTiga" class="slides d-none paper animate__fadeInRight animate__animated">
+      <div class="paper-content">
+        <p id="teks2" class="teks"></p>
+      </div>
+    </div>
 
-      <div class="countdown" id="countdownBox">
-        <div>
-          <strong id="days">00</strong>
-          <span>Days</span>
-        </div>
-        <div>
-          <strong id="hours">00</strong>
-          <span>Hours</span>
-        </div>
-        <div>
-          <strong id="minutes">00</strong>
-          <span>Minutes</span>
-        </div>
-        <div>
-          <strong id="seconds">00</strong>
-          <span>Seconds</span>
+    <div class="kotak d-none slides animate__animated animate__fadeInDown animate__delay-2s" id="slideEmpat">
+      <div class="row">
+        <div class="col-sm mt-1">
+          <h5>Kamu suka nggak?</h5>
         </div>
       </div>
-
-      <button class="primary-btn" id="startBtn">
-        Open Birthday Wish
-      </button>
-    </section>
-
-    <section class="wish-section hidden" id="wishSection">
-      <div class="message-card">
-        <h2>For You</h2>
-
-        <p>
-          May this birthday bring you new opportunities, peaceful moments,
-          stronger confidence, and many reasons to smile.
-        </p>
-
-        <p>
-          You deserve a year full of growth, good health, meaningful success,
-          and people who truly value you.
-        </p>
-
-        <p class="signature">
-          With warm wishes,<br>
-          Someone who wanted to make your day special
-        </p>
+      <div class="row mt-2">
+        <div class="col-4 offset-2">
+          <button id="gak" class="btn btn-outline-danger"> Gak! </button>
+        </div>
+        <div class="col-4">
+          <button id="suka" class="btn btn-outline-info"> Suka!! </button>
+        </div>
       </div>
+    </div>
 
-      <div class="memory-card">
-        <h3>Birthday Reminder</h3>
-        <p>
-          Today is not just about getting older. It is about celebrating how far
-          you have come and welcoming everything beautiful that is waiting ahead.
-        </p>
-      </div>
+    <div id="slideLima" class="d-none animate__bounceIn animate__animated animate__slow">
+      <i class="fas fa-heart fa-5x text-danger"></i>
+    </div>
+    <p id="trims" class="text-muted d-none mt-2"></p>
 
-      <button class="secondary-btn" id="confettiBtn">
-        Celebrate Again
-      </button>
-    </section>
-  </main>
-
-  <canvas id="confettiCanvas"></canvas>
-
+    <p id="tap" class="d-none animate__animated animate__pulse text-muted animate__slow animate__repeat-3">Ketuk untuk
+      melanjutkan</p>
+    <!-- Footer -->
+    <footer class="page-footer font-small blue fixed-bottom">
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+    integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+    integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous">
+  </script>
+  <script src="https://kit.fontawesome.com/61e5120832.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/typeit@7.0.4/dist/typeit.min.js"></script>
+  <script src="https://momentjs.com/downloads/moment.js"></script>
+  <script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+  <script src="https://momentjs.com/downloads/moment-timezone-with-data.js"></script>
   <script src="script.js"></script>
 </body>
+
 </html>
