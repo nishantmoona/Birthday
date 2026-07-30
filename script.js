@@ -1,351 +1,189 @@
 // Birthday Card
-
-// ==========================
-// 1. Basic Settings
-// ==========================
-
-// Change this to the birthday date you want
-// Format: Month Day, Year HH:MM:SS
-let countDown = new Date('Aug 05, 2026 00:00:00').getTime();
-
-// Optional: change displayed name if your HTML uses id="name"
-const birthdayPersonName = "Aastha";
-
+function playMusic() {
+  const music = document.getElementById('background-music');
+  music.play();
+}
+window.addEventListener('DOMContentLoaded', function() {
+  playMusic();
+});
+document.body.addEventListener('click', playMusic, { once: true });
 const content = document.getElementById('content');
 const footer = document.getElementsByTagName('footer')[0];
 const timer = document.getElementById('timer');
-const nameElement = document.getElementById('name');
 
-if (nameElement) {
-  nameElement.innerText = birthdayPersonName;
-}
+const second = 1000,
+  minute = second * 60,
+  hour = minute * 60,
+  day = hour * 24;
+let countDown = new Date('Oct 22, 2023 00:00:00').getTime(),
+  x = setInterval(function () {
+    let now = new Date().getTime(),
+      distance = countDown - now;
+    // document.getElementById('days').innerText = Math.floor(distance / (day)),
+    document.getElementById('hours').innerText = Math.floor(distance / (hour)),
+      document.getElementById('minutes').innerText = Math.floor((distance % (hour)) / (minute)),
+      document.getElementById('seconds').innerText = Math.floor((distance % (minute)) / second);
 
-const second = 1000;
-const minute = second * 60;
-const hour = minute * 60;
-const day = hour * 24;
+    if (distance < 0) {
 
-
-// ==========================
-// 2. Music Control
-// ==========================
-
-function playMusic() {
-  const music = document.getElementById('background-music');
-
-  if (!music) {
-    console.log("Music element not found. Check the audio id in HTML.");
-    return;
-  }
-
-  music.volume = 0.6;
-
-  music.play().catch(function () {
-    console.log("Music can only play after the user clicks/taps the page.");
-  });
-}
-
-// Browsers block autoplay, so music starts after first user interaction
-document.addEventListener('click', playMusic, { once: true });
-document.addEventListener('touchstart', playMusic, { once: true });
-
-
-// ==========================
-// 3. Countdown Timer
-// ==========================
-
-let x = setInterval(function () {
-  let now = new Date().getTime();
-  let distance = countDown - now;
-
-  const hoursElement = document.getElementById('hours');
-  const minutesElement = document.getElementById('minutes');
-  const secondsElement = document.getElementById('seconds');
-
-  if (distance > 0) {
-    if (hoursElement) {
-      hoursElement.innerText = Math.floor(distance / hour);
-    }
-
-    if (minutesElement) {
-      minutesElement.innerText = Math.floor((distance % hour) / minute);
-    }
-
-    if (secondsElement) {
-      secondsElement.innerText = Math.floor((distance % minute) / second);
-    }
-  }
-
-  if (distance <= 0) {
-    if (timer) {
       timer.classList.add('d-none');
+      confetti();
+      clearInterval(x);
+      _slideSatu();
     }
 
-    confetti();
-    clearInterval(x);
-    _slideSatu();
-  }
-
-}, second);
-
-
-// ==========================
-// 4. Slide One
-// ==========================
+  }, second)
 
 const _slideSatu = function () {
   const tap = document.getElementById('tap');
   const slideSatu = document.getElementById('slideSatu');
-
-  if (!slideSatu) return;
-
   slideSatu.classList.remove('d-none');
-
   setTimeout(function () {
-    if (tap) {
-      tap.classList.remove('d-none');
-    }
-
+    tap.classList.remove('d-none');
     document.body.addEventListener('click', function () {
       _slideDua();
-    }, { once: true });
-
+    })
   }, 7000);
 };
-
-
-// ==========================
-// 5. Slide Two
-// ==========================
 
 const _slideDua = function () {
   const slideSatu = document.getElementById('slideSatu');
   const tap = document.getElementById('tap');
   const slideDua = document.getElementById('slideDua');
 
-  if (!slideDua) return;
-
   setTimeout(function () {
-    if (slideSatu) {
-      slideSatu.classList.replace('animate__slideInDown', 'animate__backOutDown');
-
-      setTimeout(function () {
-        slideSatu.classList.add('d-none');
-      }, 1000);
-    }
-
-    if (tap) {
-      tap.classList.add('d-none');
-    }
+    slideSatu.classList.replace('animate__slideInDown', 'animate__backOutDown');
+    tap.classList.add('d-none');
+    setTimeout(function () {
+      slideSatu.classList.add('d-none');
+    }, 1000);
   }, 1000);
 
   slideDua.classList.remove('d-none');
-
   setTimeout(function () {
-    if (tap) {
-      tap.classList.remove('d-none');
-    }
-
+    tap.classList.remove('d-none');
     document.body.addEventListener('click', function () {
       slideDua.classList.replace('animate__zoomInDown', 'animate__fadeOutLeft');
       slideDua.classList.remove('animate__delay-2s', 'animate__slow');
-
-      if (tap) {
-        tap.classList.add('d-none');
-      }
-
+      tap.classList.add('d-none');
       setTimeout(function () {
         slideDua.remove();
         _slideTiga();
       }, 1000);
-
-    }, { once: true });
-
+    })
   }, 40000);
 };
-
-
-// ==========================
-// 6. Slide Three
-// ==========================
 
 const _slideTiga = function () {
   const tap = document.getElementById('tap');
   const slideTiga = document.getElementById('slideTiga');
 
-  if (!slideTiga) return;
-
   slideTiga.classList.remove('d-none');
-
   setTimeout(function () {
-    if (tap) {
-      tap.classList.remove('d-none');
-    }
-
+    tap.classList.remove('d-none');
     document.body.addEventListener('click', function () {
       slideTiga.classList.remove('animate__delay-2s', 'animate__slow');
       slideTiga.classList.replace('animate__fadeInRight', 'animate__fadeOut');
-
-      if (tap) {
-        tap.remove();
-      }
-
+      tap.remove();
       setTimeout(function () {
         slideTiga.remove();
         _slideEmpat();
       }, 1000);
-
-    }, { once: true });
-
+    })
   }, 43000);
-};
-
-
-// ==========================
-// 7. Slide Four - Button Section
-// ==========================
+}
 
 function getRandomPosition(element) {
-  const maxTop = window.innerHeight - element.clientHeight - 40;
-  const randomTop = Math.floor(Math.random() * Math.max(maxTop, 100));
-  return randomTop;
-}
+  var x = document.body.offsetHeight - element.clientHeight;
+  var y = document.body.offsetWidth - element.clientWidth;
+  var randomX = Math.floor(Math.random() * 500);
+  var randomY = Math.floor(Math.random() * y);
+  return [randomX, randomY];
+};
 
 const _slideEmpat = function () {
   const slideEmpat = document.getElementById('slideEmpat');
-
-  if (!slideEmpat) return;
-
-  const gakButton = document.getElementById('gak');
-  const sukaButton = document.getElementById('suka');
-
+  const btn = document.getElementsByTagName('button');
   slideEmpat.classList.remove('d-none');
 
-  if (gakButton) {
-    gakButton.addEventListener('click', function () {
-      const randomTop = getRandomPosition(slideEmpat);
-      slideEmpat.style.top = randomTop + 'px';
-    });
-  }
+  btn[0].addEventListener('click', function () {
+    var xy = getRandomPosition(slideEmpat);
+    slideEmpat.style.top = xy[0] + 'px';
+    // slideEmpat.style.left = xy[1] + 'px';
+  });
 
-  if (sukaButton) {
-    sukaButton.addEventListener('click', function () {
-      slideEmpat.classList.replace('animate__fadeInDown', 'animate__bounceOut');
-      slideEmpat.classList.remove('animate__delay-2s');
-
-      setTimeout(function () {
-        slideEmpat.remove();
-
-        setTimeout(function () {
-          _slideLima();
-        }, 500);
-
-      }, 1000);
-    });
-  }
+  btn[1].addEventListener('click', function () {
+    slideEmpat.classList.replace('animate__fadeInDown', 'animate__bounceOut');
+    slideEmpat.classList.remove('animate__delay-2s');
+    setTimeout(function () {
+      slideEmpat.remove()
+      setTimeout(() => {
+        _slideLima();
+      }, 500);
+    }, 1000);
+  })
 };
-
-
-// ==========================
-// 8. Slide Five
-// ==========================
 
 const _slideLima = function () {
   const slideLima = document.getElementById('slideLima');
+  slideLima.classList.remove('d-none');
   const trims = document.getElementById('trims');
 
-  if (!slideLima) return;
-
-  slideLima.classList.remove('d-none');
-
-  setTimeout(function () {
-    if (trims) {
-      trims.classList.remove('d-none');
-    }
+  setTimeout(() => {
+    trims.classList.remove('d-none');
   }, 1000);
 
-  slideLima.addEventListener('animationend', function () {
-    slideLima.classList.add('animate__delay-3s');
+  slideLima.addEventListener('animationend', () => {
+    slideLima.classList.add('animate__delay-3s')
     slideLima.classList.replace('animate__bounceIn', 'animate__fadeOut');
-
-    if (trims) {
-      trims.classList.add('animate__animated', 'animate__fadeOut', 'animate__delay-3s');
-    }
-
-    setTimeout(function () {
-      if (trims) {
-        trims.remove();
-      }
-
-      setTimeout(function () {
+    trims.classList.add('animate__animated', 'animate__fadeOut', 'animate__delay-3s');
+    setTimeout(() => {
+      trims.remove();
+      setTimeout(() => {
         slideLima.remove();
         _slideEnam();
       }, 1000);
-
     }, 6000);
-  }, { once: true });
+  });
 };
-
-
-// ==========================
-// 9. Slide Six
-// ==========================
 
 const _slideEnam = function () {
   const slideEnam = document.getElementById('slideEnam');
-
-  if (slideEnam) {
-    slideEnam.classList.remove('d-none');
-  }
+  slideEnam.classList.remove('d-none');
 };
 
 
-// ==========================
-// 10. Typing Animation
-// ==========================
+new TypeIt("#teks1", {
+  strings: ["On this special day, may you be gifted with life's biggest joys and never-ending bliss. Remember, you are capable of achieving anything you put your mind to. May every moment be filled with joy, laughter, and love on your special day. Happy Birthday!"],
+  startDelay: 4000,
+  speed: 75,
+  waitUntilVisible: true
+}).go();
 
-if (document.getElementById("teks1")) {
-  new TypeIt("#teks1", {
-    strings: [
-      "On this special day, may you be gifted with life's biggest joys and never-ending bliss. Remember, you are capable of achieving anything you put your mind to. May every moment be filled with joy, laughter, and love on your special day. Happy Birthday!"
-    ],
-    startDelay: 4000,
-    speed: 75,
-    waitUntilVisible: true
-  }).go();
-}
-
-if (document.getElementById("teks2")) {
-  new TypeIt("#teks2", {
-    strings: [
-      "May your birthday be as amazing as you are. On your special day, remember you're loved, appreciated, and cherished. Happy Birthday again!"
-    ],
-    startDelay: 2000,
-    speed: 75,
-    waitUntilVisible: true
-  }).go();
-}
-
-if (document.getElementById("trims")) {
-  new TypeIt("#trims", {
-    strings: ["Thank you."],
-    startDelay: 2000,
-    speed: 150,
-    loop: false,
-    waitUntilVisible: true,
-  }).go();
-}
+new TypeIt("#teks2", {
+  strings: ["May your birthday be as amazing as you are. On your special day, remember you're loved, appreciated, and cherished, Happy Birthday again"],
+  startDelay: 2000,
+  speed: 75,
+  waitUntilVisible: true
+}).go();
 
 
-// ==========================
-// 11. Confetti Animation
-// ==========================
+new TypeIt("#trims", {
+  strings: ["Terimakasih."],
+  startDelay: 2000,
+  speed: 150,
+  loop: false,
+  waitUntilVisible: true,
+}).go();
+
+
 
 'use strict';
 
 var onlyOnKonami = false;
 
 function confetti() {
+  // Globals
   var $window = $(window),
     random = Math.random,
     cos = Math.cos,
@@ -356,13 +194,14 @@ function confetti() {
     frame = undefined,
     confetti = [];
 
-  var runFor = 2000;
-  var isRunning = true;
+  var runFor = 2000
+  var isRunning = true
 
-  setTimeout(function () {
-    isRunning = false;
+  setTimeout(() => {
+    isRunning = false
   }, runFor);
 
+  // Settings
   var konami = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65],
     pointer = 0;
 
@@ -372,12 +211,12 @@ function confetti() {
     sizeMax = 12 - sizeMin,
     eccentricity = 10,
     deviation = 100,
-    dxThetaMin = -0.1,
+    dxThetaMin = -.1,
     dxThetaMax = -dxThetaMin - dxThetaMin,
-    dyMin = 0.13,
-    dyMax = 0.18,
-    dThetaMin = 0.4,
-    dThetaMax = 0.7 - dThetaMin;
+    dyMin = .13,
+    dyMax = .18,
+    dThetaMin = .4,
+    dThetaMax = .7 - dThetaMin;
 
   var colorThemes = [
     function () {
@@ -406,13 +245,13 @@ function confetti() {
       return color(black, black, black);
     },
     function () {
-      return colorThemes[random() < 0.5 ? 1 : 2]();
+      return colorThemes[random() < .5 ? 1 : 2]();
     },
     function () {
-      return colorThemes[random() < 0.5 ? 3 : 5]();
+      return colorThemes[random() < .5 ? 3 : 5]();
     },
     function () {
-      return colorThemes[random() < 0.5 ? 2 : 4]();
+      return colorThemes[random() < .5 ? 2 : 4]();
     }
   ];
 
@@ -420,67 +259,53 @@ function confetti() {
     return 'rgb(' + r + ',' + g + ',' + b + ')';
   }
 
+  // Cosine interpolation
   function interpolation(a, b, t) {
     return (1 - cos(PI * t)) / 2 * (b - a) + a;
   }
 
+  // Create a 1D Maximal Poisson Disc over [0, 1]
   var radius = 1 / eccentricity,
     radius2 = radius + radius;
 
   function createPoisson() {
+    // domain is the set of points which are still available to pick from
+    // D = union{ [d_i, d_i+1] | i is even }
     var domain = [radius, 1 - radius],
       measure = 1 - radius2,
       spline = [0, 1];
-
     while (measure) {
       var dart = measure * random(),
-        i,
-        l,
-        interval,
-        a,
-        b,
-        c,
-        d;
+        i, l, interval, a, b, c, d;
 
+      // Find where dart lies
       for (i = 0, l = domain.length, measure = 0; i < l; i += 2) {
-        a = domain[i];
-        b = domain[i + 1];
-        interval = b - a;
-
+        a = domain[i], b = domain[i + 1], interval = b - a;
         if (dart < measure + interval) {
           spline.push(dart += a - measure);
           break;
         }
-
         measure += interval;
       }
-
-      c = dart - radius;
-      d = dart + radius;
+      c = dart - radius, d = dart + radius;
 
       for (i = domain.length - 1; i > 0; i -= 2) {
-        l = i - 1;
-        a = domain[l];
-        b = domain[i];
-
-        if (a >= c && a < d) {
-          if (b > d) {
-            domain[l] = d;
-          } else {
-            domain.splice(l, 2);
-          }
-        } else if (a < c && b > c) {
-          if (b <= d) {
-            domain[i] = c;
-          } else {
-            domain.splice(i, 0, c, d);
-          }
-        }
+        l = i - 1, a = domain[l], b = domain[i];
+        // c---d          c---d  Do nothing
+        //   c-----d  c-----d    Move interior
+        //   c--------------d    Delete interval
+        //         c--d          Split interval
+        //       a------b
+        if (a >= c && a < d)
+          if (b > d) domain[l] = d; // Move interior (Left case)
+          else domain.splice(l, 2); // Delete interval
+        else if (a < c && b > c)
+          if (b <= d) domain[i] = c; // Move interior (Right case)
+          else domain.splice(i, 0, c, d); // Split interval
       }
 
-      for (i = 0, l = domain.length, measure = 0; i < l; i += 2) {
+      for (i = 0, l = domain.length, measure = 0; i < l; i += 2)
         measure += domain[i + 1] - domain[i];
-      }
     }
 
     return spline.sort();
@@ -495,6 +320,7 @@ function confetti() {
   container.style.overflow = 'visible';
   container.style.zIndex = '9999';
 
+  // Confetto constructor
   function Confetto(theme) {
     this.frame = 0;
     this.outer = document.createElement('div');
@@ -503,42 +329,34 @@ function confetti() {
 
     var outerStyle = this.outer.style,
       innerStyle = this.inner.style;
-
     outerStyle.position = 'absolute';
     outerStyle.width = (sizeMin + sizeMax * random()) + 'px';
     outerStyle.height = (sizeMin + sizeMax * random()) + 'px';
-
     innerStyle.width = '100%';
     innerStyle.height = '100%';
     innerStyle.backgroundColor = theme();
 
     outerStyle.perspective = '50px';
     outerStyle.transform = 'rotate(' + (360 * random()) + 'deg)';
-
     this.axis = 'rotate3D(' +
       cos(360 * random()) + ',' +
       cos(360 * random()) + ',0,';
-
     this.theta = 360 * random();
     this.dTheta = dThetaMin + dThetaMax * random();
-
     innerStyle.transform = this.axis + this.theta + 'deg)';
 
     this.x = $window.width() * random();
     this.y = -deviation;
     this.dx = sin(dxThetaMin + dxThetaMax * random());
     this.dy = dyMin + dyMax * random();
-
     outerStyle.left = this.x + 'px';
     outerStyle.top = this.y + 'px';
 
+    // Create the periodic spline
     this.splineX = createPoisson();
     this.splineY = [];
-
-    for (var i = 1, l = this.splineX.length - 1; i < l; ++i) {
+    for (var i = 1, l = this.splineX.length - 1; i < l; ++i)
       this.splineY[i] = deviation * random();
-    }
-
     this.splineY[0] = this.splineY[l] = deviation * random();
 
     this.update = function (height, delta) {
@@ -547,41 +365,40 @@ function confetti() {
       this.y += this.dy * delta;
       this.theta += this.dTheta * delta;
 
+      // Compute spline and convert to polar
       var phi = this.frame % 7777 / 7777,
         i = 0,
         j = 1;
-
-      while (phi >= this.splineX[j]) {
-        i = j++;
-      }
-
+      while (phi >= this.splineX[j]) i = j++;
       var rho = interpolation(
         this.splineY[i],
         this.splineY[j],
         (phi - this.splineX[i]) / (this.splineX[j] - this.splineX[i])
       );
-
       phi *= PI2;
 
       outerStyle.left = this.x + rho * cos(phi) + 'px';
       outerStyle.top = this.y + rho * sin(phi) + 'px';
       innerStyle.transform = this.axis + this.theta + 'deg)';
-
       return this.y > height + deviation;
     };
   }
 
+
   function poof() {
     if (!frame) {
+      // Append the container
       document.body.appendChild(container);
+
+      // Add confetti
 
       var theme = colorThemes[onlyOnKonami ? colorThemes.length * random() | 0 : 0],
         count = 0;
 
       (function addConfetto() {
-        if (onlyOnKonami && ++count > particles) {
+
+        if (onlyOnKonami && ++count > particles)
           return timer = undefined;
-        }
 
         if (isRunning) {
           var confetto = new Confetto(theme);
@@ -590,14 +407,14 @@ function confetti() {
           container.appendChild(confetto.outer);
           timer = setTimeout(addConfetto, spread * random());
         }
-      })();
+      })(0);
 
+
+      // Start the loop
       var prev = undefined;
-
       requestAnimationFrame(function loop(timestamp) {
         var delta = prev ? timestamp - prev : 0;
         prev = timestamp;
-
         var height = $window.height();
 
         for (var i = confetti.length - 1; i >= 0; --i) {
@@ -607,11 +424,10 @@ function confetti() {
           }
         }
 
-        if (timer || confetti.length) {
-          frame = requestAnimationFrame(loop);
-          return;
-        }
+        if (timer || confetti.length)
+          return frame = requestAnimationFrame(loop);
 
+        // Cleanup
         document.body.removeChild(container);
         frame = undefined;
       });
@@ -619,17 +435,14 @@ function confetti() {
   }
 
   $window.keydown(function (event) {
-    pointer = konami[pointer] === event.which
-      ? pointer + 1
-      : +(event.which === konami[0]);
-
+    pointer = konami[pointer] === event.which ?
+      pointer + 1 :
+      +(event.which === konami[0]);
     if (pointer === konami.length) {
       pointer = 0;
       poof();
     }
   });
 
-  if (!onlyOnKonami) {
-    poof();
-  }
-}
+  if (!onlyOnKonami) poof();
+};
