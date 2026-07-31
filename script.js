@@ -97,11 +97,14 @@ const _slideSatu = function () {
   const tap = document.getElementById('tap');
   const slideSatu = document.getElementById('slideSatu');
 
+  if (!slideSatu) return;
+
   slideSatu.classList.remove('d-none');
 
-  // Show tap instruction quickly
   setTimeout(function () {
-    tap.classList.remove('d-none');
+    if (tap) {
+      tap.classList.remove('d-none');
+    }
 
     document.body.addEventListener('click', function () {
       _slideDua();
@@ -111,61 +114,50 @@ const _slideSatu = function () {
 };
 
 
+// ==========================
+// 5. Slide Two
+// ==========================
+
 const _slideDua = function () {
   const slideSatu = document.getElementById('slideSatu');
   const tap = document.getElementById('tap');
   const slideDua = document.getElementById('slideDua');
 
-  // Hide first slide
-  slideSatu.classList.replace('animate__slideInDown', 'animate__backOutDown');
-  tap.classList.add('d-none');
+  if (!slideDua) return;
 
   setTimeout(function () {
-    slideSatu.classList.add('d-none');
+    if (slideSatu) {
+      slideSatu.classList.replace('animate__slideInDown', 'animate__backOutDown');
+
+      setTimeout(function () {
+        slideSatu.classList.add('d-none');
+      }, 800);
+    }
+
+    if (tap) {
+      tap.classList.add('d-none');
+    }
   }, 800);
 
-  // Show second slide
   slideDua.classList.remove('d-none');
 
-  // Allow next click much faster
   setTimeout(function () {
-    tap.classList.remove('d-none');
+    if (tap) {
+      tap.classList.remove('d-none');
+    }
 
     document.body.addEventListener('click', function () {
       slideDua.classList.replace('animate__zoomInDown', 'animate__fadeOutLeft');
       slideDua.classList.remove('animate__delay-2s', 'animate__slow');
-      tap.classList.add('d-none');
+
+      if (tap) {
+        tap.classList.add('d-none');
+      }
 
       setTimeout(function () {
         slideDua.remove();
         _slideTiga();
-      }, 800);
-
-    }, { once: true });
-
-  }, 2500);
-};
-
-
-const _slideTiga = function () {
-  const tap = document.getElementById('tap');
-  const slideTiga = document.getElementById('slideTiga');
-
-  slideTiga.classList.remove('d-none');
-
-  // Allow next click much faster
-  setTimeout(function () {
-    tap.classList.remove('d-none');
-
-    document.body.addEventListener('click', function () {
-      slideTiga.classList.remove('animate__delay-2s', 'animate__slow');
-      slideTiga.classList.replace('animate__fadeInRight', 'animate__fadeOut');
-      tap.remove();
-
-      setTimeout(function () {
-        slideTiga.remove();
-        _slideEmpat();
-      }, 800);
+      }, 1000);
 
     }, { once: true });
 
@@ -201,11 +193,11 @@ const _slideTiga = function () {
       setTimeout(function () {
         slideTiga.remove();
         _slideEmpat();
-      }, 1000);
+      }, 800);
 
     }, { once: true });
 
-  }, 43000);
+  }, 2500);
 };
 
 
@@ -224,20 +216,20 @@ const _slideEmpat = function () {
 
   if (!slideEmpat) return;
 
-  const gakButton = document.getElementById('gak');
-  const sukaButton = document.getElementById('suka');
+  const NoButton = document.getElementById('No');
+  const YesButton = document.getElementById('Yes');
 
   slideEmpat.classList.remove('d-none');
 
-  if (gakButton) {
-    gakButton.addEventListener('click', function () {
+  if (NoButton) {
+    NoButton.addEventListener('click', function () {
       const randomTop = getRandomPosition(slideEmpat);
       slideEmpat.style.top = randomTop + 'px';
     });
   }
 
-  if (sukaButton) {
-    sukaButton.addEventListener('click', function () {
+  if (YesButton) {
+    YesButton.addEventListener('click', function () {
       slideEmpat.classList.replace('animate__fadeInDown', 'animate__bounceOut');
       slideEmpat.classList.remove('animate__delay-2s');
 
@@ -312,19 +304,27 @@ const _slideEnam = function () {
 // 10. Typing Animation
 // ==========================
 
-new TypeIt("#teks1", {
-  strings: ["On this special day, may you be gifted with life's biggest joys and never-ending bliss. Remember, you are capable of achieving anything you put your mind to. May every moment be filled with joy, laughter, and love on your special day. Happy Birthday!"],
-  startDelay: 1000,
-  speed: 35,
-  waitUntilVisible: true
-}).go();}
+if (document.getElementById("teks1")) {
+  new TypeIt("#teks1", {
+    strings: [
+      "On this special day, may you be gifted with life's biggest joys and never-ending bliss. Remember, you are capable of achieving anything you put your mind to. May every moment be filled with joy, laughter, and love on your special day. Happy Birthday!"
+    ],
+    startDelay: 4000,
+    speed: 75,
+    waitUntilVisible: true
+  }).go();
+}
 
-new TypeIt("#teks2", {
-  strings: ["May your birthday be as amazing as you are. On your special day, remember you're loved, appreciated, and cherished, Happy Birthday again"],
-  startDelay: 1000,
-  speed: 35,
-  waitUntilVisible: true
-}).go();
+if (document.getElementById("teks2")) {
+  new TypeIt("#teks2", {
+    strings: [
+      "May your birthday be as amazing as you are. On your special day, remember you are loved, appreciated, and cherished. Happy Birthday again!"
+    ],
+    startDelay: 2000,
+    speed: 75,
+    waitUntilVisible: true
+  }).go();
+}
 
 if (document.getElementById("trims")) {
   new TypeIt("#trims", {
