@@ -35,14 +35,17 @@ html {
 
 #tap {
   position: fixed;
-  left: 50%;
+  left: 0;
+  right: 0;
   bottom: 28px;
-  transform: translateX(-50%);
 
-  display: inline-block;
+  width: fit-content;
+  max-width: 90%;
+  margin: 0 auto;
+
   padding: 10px 22px;
 
-  background: rgba(255, 255, 255, 0.85);
+  background: rgba(255, 255, 255, 0.9);
   color: #6d3b4f;
   font-size: 15px;
   font-weight: 600;
@@ -181,8 +184,8 @@ html {
     bottom: 18px;
     font-size: 13px;
     padding: 9px 16px;
-    max-width: 90%;
     white-space: normal;
+    text-align: center;
   }
 }
 @media (max-width: 600px) {
