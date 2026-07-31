@@ -254,38 +254,25 @@ const _slideLima = function () {
   const slideLima = document.getElementById('slideLima');
   const trims = document.getElementById('trims');
 
-  if (!slideLima) return;
+  if (!slideLima || !trims) return;
 
   slideLima.classList.remove('d-none');
 
-  setTimeout(function () {
-    if (trims) {
-      trims.classList.remove('d-none');
-    }
+  setTimeout(() => {
+    trims.classList.remove('d-none');
   }, 1000);
 
-  slideLima.addEventListener('animationend', function () {
+  slideLima.addEventListener('animationend', () => {
     slideLima.classList.add('animate__delay-3s');
     slideLima.classList.replace('animate__bounceIn', 'animate__fadeOut');
 
-    if (trims) {
-      trims.classList.add('animate__animated', 'animate__fadeOut', 'animate__delay-3s');
-    }
+    // Keep the final thank-you text visible for 15 seconds
+    setTimeout(() => {
+      _slideEnam();
+    }, 15000);
 
-    setTimeout(function () {
-      if (trims) {
-        trims.remove();
-      }
-
-      setTimeout(function () {
-        slideLima.remove();
-        _slideEnam();
-      }, 1000);
-
-    }, 6000);
   }, { once: true });
 };
-
 
 // ==========================
 // 9. Slide Six
@@ -329,8 +316,8 @@ if (document.getElementById("teks2")) {
 if (document.getElementById("trims")) {
   new TypeIt("#trims", {
     strings: ["Thank you for being so special. Designed by Nishant Moona"],
-    startDelay: 2000,
-    speed: 150,
+    startDelay: 1000,
+    speed: 80,
     loop: false,
     waitUntilVisible: true
   }).go();
