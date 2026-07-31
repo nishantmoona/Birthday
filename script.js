@@ -318,7 +318,7 @@ if (document.getElementById("teks1")) {
       "On this special day, may you be gifted with life's biggest joys and never-ending bliss. Remember, you are capable of achieving anything you put your mind to. May every moment be filled with joy, laughter, and love on your special day. Happy Birthday!"
     ],
     startDelay: 4000,
-    speed: 75,
+    speed: 50,
     waitUntilVisible: true
   }).go();
 }
@@ -329,7 +329,7 @@ if (document.getElementById("teks2")) {
       "May your birthday be as amazing as you are. On your special day, remember you are loved, appreciated, and cherished. Happy Birthday again!"
     ],
     startDelay: 2000,
-    speed: 75,
+    speed: 50,
     waitUntilVisible: true
   }).go();
 }
