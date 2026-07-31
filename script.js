@@ -8,7 +8,7 @@
 let countDown = new Date('Jul 31, 2026 00:00:00').getTime();
 
 // Change the birthday person's name here
-const birthdayPersonName = "Aastha";
+const birthdayPersonName = "Billy";
 
 const content = document.getElementById('content');
 const footer = document.getElementsByTagName('footer')[0];
@@ -312,27 +312,19 @@ const _slideEnam = function () {
 // 10. Typing Animation
 // ==========================
 
-if (document.getElementById("teks1")) {
-  new TypeIt("#teks1", {
-    strings: [
-      "On this special day, may you be gifted with life's biggest joys and never-ending bliss. Remember, you are capable of achieving anything you put your mind to. May every moment be filled with joy, laughter, and love on your special day. Happy Birthday!"
-    ],
-    startDelay: 4000,
-    speed: 50,
-    waitUntilVisible: true
-  }).go();
-}
+new TypeIt("#teks1", {
+  strings: ["On this special day, may you be gifted with life's biggest joys and never-ending bliss. Remember, you are capable of achieving anything you put your mind to. May every moment be filled with joy, laughter, and love on your special day. Happy Birthday!"],
+  startDelay: 1000,
+  speed: 35,
+  waitUntilVisible: true
+}).go();}
 
-if (document.getElementById("teks2")) {
-  new TypeIt("#teks2", {
-    strings: [
-      "May your birthday be as amazing as you are. On your special day, remember you are loved, appreciated, and cherished. Happy Birthday again!"
-    ],
-    startDelay: 2000,
-    speed: 50,
-    waitUntilVisible: true
-  }).go();
-}
+new TypeIt("#teks2", {
+  strings: ["May your birthday be as amazing as you are. On your special day, remember you're loved, appreciated, and cherished, Happy Birthday again"],
+  startDelay: 1000,
+  speed: 35,
+  waitUntilVisible: true
+}).go();
 
 if (document.getElementById("trims")) {
   new TypeIt("#trims", {
