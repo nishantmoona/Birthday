@@ -294,7 +294,7 @@ const _slideEnam = function () {
 if (document.getElementById("teks1")) {
   new TypeIt("#teks1", {
     strings: [
-      "On this special day, may you be gifted with life's biggest joys and never-ending bliss. Remember, you are capable of achieving anything you put your mind to. May every moment be filled with joy, laughter, and love on your special day. Happy Birthday!"
+      "On this special day, may you be gifted with life's biggest joys and never-ending bliss. Remember, you are capable of achieving anything you put your mind to. May every moment be filled with joy, laughter, and love on your special day. Happy Birthday Billy!"
     ],
     startDelay: 4000,
     speed: 75,
@@ -305,7 +305,7 @@ if (document.getElementById("teks1")) {
 if (document.getElementById("teks2")) {
   new TypeIt("#teks2", {
     strings: [
-      "May your birthday be as amazing as you are. On your special day, remember you are loved, appreciated, and cherished. Happy Birthday again!"
+      "May your birthday be as amazing as you are. On your special day, remember you are loved, appreciated, and cherished. Happy Birthday again Billy!"
     ],
     startDelay: 2000,
     speed: 75,
@@ -315,7 +315,7 @@ if (document.getElementById("teks2")) {
 
 if (document.getElementById("trims")) {
   new TypeIt("#trims", {
-    strings: ["Thank you for being so special. Designed and wishes by Nishant Moona."],
+    strings: ["Thank you for being so special. Designed and wished by Nishant Moona."],
     startDelay: 1000,
     speed: 80,
     loop: false,
