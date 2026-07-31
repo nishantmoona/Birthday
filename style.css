@@ -316,3 +316,58 @@ body {
     padding-bottom: 115px;
   }
 }
+
+/* Final fixed bottom tap text */
+#tap {
+  position: fixed !important;
+  left: 50% !important;
+  right: auto !important;
+  bottom: 28px !important;
+
+  transform: translateX(-50%) !important;
+
+  width: auto !important;
+  max-width: 90vw !important;
+  margin: 0 !important;
+
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+
+  padding: 10px 22px !important;
+
+  background: rgba(255, 255, 255, 0.92) !important;
+  color: #6d3b4f !important;
+
+  font-size: 15px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.3px;
+  text-align: center !important;
+
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  backdrop-filter: blur(8px);
+
+  z-index: 9999 !important;
+  white-space: nowrap;
+}
+
+/* Remove animation transform conflict */
+#tap.animate__animated {
+  animation-name: none !important;
+}
+
+/* Mobile adjustment */
+@media (max-width: 600px) {
+  #tap {
+    bottom: 18px !important;
+    width: auto !important;
+    max-width: calc(100vw - 36px) !important;
+
+    font-size: 13px !important;
+    padding: 9px 16px !important;
+
+    white-space: normal !important;
+    text-align: center !important;
+  }
+}
