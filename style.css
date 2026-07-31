@@ -177,6 +177,15 @@ html {
 
 /* Mobile adjustment */
 @media (max-width: 600px) {
+  #tap {
+    bottom: 18px;
+    font-size: 13px;
+    padding: 9px 16px;
+    max-width: 90%;
+    white-space: normal;
+  }
+}
+@media (max-width: 600px) {
   .paper {
     width: 92%;
     min-height: 470px;
