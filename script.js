@@ -328,7 +328,7 @@ if (document.getElementById("teks2")) {
 
 if (document.getElementById("trims")) {
   new TypeIt("#trims", {
-    strings: ["Thank you. Designed by Nishant Moona"],
+    strings: ["Thank you for being so special. Designed by Nishant Moona"],
     startDelay: 2000,
     speed: 150,
     loop: false,
