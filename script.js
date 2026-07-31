@@ -97,71 +97,79 @@ const _slideSatu = function () {
   const tap = document.getElementById('tap');
   const slideSatu = document.getElementById('slideSatu');
 
-  if (!slideSatu) return;
-
   slideSatu.classList.remove('d-none');
 
+  // Show tap instruction quickly
   setTimeout(function () {
-    if (tap) {
-      tap.classList.remove('d-none');
-    }
+    tap.classList.remove('d-none');
 
     document.body.addEventListener('click', function () {
       _slideDua();
     }, { once: true });
 
-  }, 7000);
+  }, 1500);
 };
 
-
-// ==========================
-// 5. Slide Two
-// ==========================
 
 const _slideDua = function () {
   const slideSatu = document.getElementById('slideSatu');
   const tap = document.getElementById('tap');
   const slideDua = document.getElementById('slideDua');
 
-  if (!slideDua) return;
+  // Hide first slide
+  slideSatu.classList.replace('animate__slideInDown', 'animate__backOutDown');
+  tap.classList.add('d-none');
 
   setTimeout(function () {
-    if (slideSatu) {
-      slideSatu.classList.replace('animate__slideInDown', 'animate__backOutDown');
+    slideSatu.classList.add('d-none');
+  }, 800);
 
-      setTimeout(function () {
-        slideSatu.classList.add('d-none');
-      }, 1000);
-    }
-
-    if (tap) {
-      tap.classList.add('d-none');
-    }
-  }, 1000);
-
+  // Show second slide
   slideDua.classList.remove('d-none');
 
+  // Allow next click much faster
   setTimeout(function () {
-    if (tap) {
-      tap.classList.remove('d-none');
-    }
+    tap.classList.remove('d-none');
 
     document.body.addEventListener('click', function () {
       slideDua.classList.replace('animate__zoomInDown', 'animate__fadeOutLeft');
       slideDua.classList.remove('animate__delay-2s', 'animate__slow');
-
-      if (tap) {
-        tap.classList.add('d-none');
-      }
+      tap.classList.add('d-none');
 
       setTimeout(function () {
         slideDua.remove();
         _slideTiga();
-      }, 1000);
+      }, 800);
 
     }, { once: true });
 
-  }, 40000);
+  }, 2500);
+};
+
+
+const _slideTiga = function () {
+  const tap = document.getElementById('tap');
+  const slideTiga = document.getElementById('slideTiga');
+
+  slideTiga.classList.remove('d-none');
+
+  // Allow next click much faster
+  setTimeout(function () {
+    tap.classList.remove('d-none');
+
+    document.body.addEventListener('click', function () {
+      slideTiga.classList.remove('animate__delay-2s', 'animate__slow');
+      slideTiga.classList.replace('animate__fadeInRight', 'animate__fadeOut');
+      tap.remove();
+
+      setTimeout(function () {
+        slideTiga.remove();
+        _slideEmpat();
+      }, 800);
+
+    }, { once: true });
+
+  }, 2500);
 };
 
 
