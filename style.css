@@ -260,35 +260,40 @@ body {
 
 .paper-gif {
   position: absolute;
-  width: 95px;
+  width: 190px; /* twice the earlier 95px size */
   height: auto;
   z-index: 5;
   pointer-events: none;
-  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.18));
+  filter: drop-shadow(0 10px 18px rgba(0, 0, 0, 0.22));
 }
 
-.paper-gif-top {
-  top: 22px;
-  right: 28px;
-}
-
+/* Both GIFs will appear at bottom-center */
+.paper-gif-top,
 .paper-gif-bottom {
-  bottom: 22px;
-  right: 28px;
+  top: auto;
+  right: auto;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
+/* Add bottom space so GIF does not cover the typed text */
+.paper-content {
+  padding-bottom: 150px;
+}
+
+/* Mobile adjustment */
 @media (max-width: 600px) {
   .paper-gif {
-    width: 72px;
+    width: 130px;
   }
 
-  .paper-gif-top {
-    top: 16px;
-    right: 18px;
-  }
-
+  .paper-gif-top,
   .paper-gif-bottom {
-    bottom: 16px;
-    right: 18px;
+    bottom: 14px;
+  }
+
+  .paper-content {
+    padding-bottom: 115px;
   }
 }
