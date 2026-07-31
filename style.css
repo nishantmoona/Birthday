@@ -257,3 +257,38 @@ body {
   padding: 0;
   text-align: center;
 }
+
+.paper-gif {
+  position: absolute;
+  width: 95px;
+  height: auto;
+  z-index: 5;
+  pointer-events: none;
+  filter: drop-shadow(0 8px 14px rgba(0, 0, 0, 0.18));
+}
+
+.paper-gif-top {
+  top: 22px;
+  right: 28px;
+}
+
+.paper-gif-bottom {
+  bottom: 22px;
+  right: 28px;
+}
+
+@media (max-width: 600px) {
+  .paper-gif {
+    width: 72px;
+  }
+
+  .paper-gif-top {
+    top: 16px;
+    right: 18px;
+  }
+
+  .paper-gif-bottom {
+    bottom: 16px;
+    right: 18px;
+  }
+}
