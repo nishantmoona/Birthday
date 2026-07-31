@@ -57,62 +57,140 @@ html {
 @import url(https://fonts.googleapis.com/css?family=Handlee);
 
 
+/* Elegant Birthday Letter / Book Page */
 .paper {
   font-family: 'Roboto', sans-serif;
   position: relative;
   width: 90%;
-  max-width: 800px;
+  max-width: 760px;
   min-width: 300px;
-  height: 540px;
+  min-height: 500px;
   margin: 50px auto;
   display: inline-block;
   vertical-align: middle;
   line-height: normal;
-  background: #fafafa;
-  border-radius: 10px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, .3);
+
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 244, 248, 0.95)),
+    radial-gradient(circle at top left, rgba(255, 192, 203, 0.35), transparent 35%);
+
+  border-radius: 28px;
+  border: 2px solid rgba(255, 182, 193, 0.5);
+  box-shadow:
+    0 25px 60px rgba(128, 40, 80, 0.25),
+    inset 0 0 35px rgba(255, 255, 255, 0.7);
+
   overflow: hidden;
+  padding: 28px;
 }
 
+/* Decorative top ribbon */
 .paper:before {
-  content: '';
+  content: "Happy Birthday";
   position: absolute;
   top: 0;
-  bottom: 0;
-  left: 5px;
-  width: 45px;
-  background: radial-gradient(#616161 6px, transparent 7px) repeat-y;
-  background-size: 30px 30px;
-  border-right: 3px solid #D44147;
-  box-sizing: border-box;
+  left: 50%;
+  transform: translateX(-50%);
+
+  padding: 10px 34px;
+  background: linear-gradient(135deg, #ff7aa8, #9b5de5);
+  color: #ffffff;
+
+  font-family: 'Quicksand', sans-serif;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  border-radius: 0 0 22px 22px;
+  box-shadow: 0 10px 25px rgba(155, 93, 229, 0.25);
 }
 
-.paper-content {
+/* Soft decorative glow */
+.paper:after {
+  content: "";
   position: absolute;
-  top: 30px;
-  right: 0;
-  bottom: 30px;
-  left: 50px;
-  background: linear-gradient(transparent, transparent 28px, #91D1D3 28px);
-  background-size: 30px 30px;
+  width: 180px;
+  height: 180px;
+  right: -60px;
+  bottom: -60px;
+
+  background: radial-gradient(circle, rgba(255, 122, 168, 0.35), transparent 70%);
+  border-radius: 50%;
 }
 
+/* Text area */
+.paper-content {
+  position: relative;
+  top: auto;
+  right: auto;
+  bottom: auto;
+  left: auto;
+
+  width: 100%;
+  min-height: 430px;
+  padding: 70px 35px 35px;
+
+  background:
+    linear-gradient(rgba(255,255,255,0.55), rgba(255,255,255,0.55)),
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 31px,
+      rgba(255, 182, 193, 0.35) 32px
+    );
+
+  border-radius: 22px;
+  border: 1px solid rgba(255, 192, 203, 0.45);
+}
+
+/* Typed birthday message */
 .paper-content .teks {
   text-align: left;
   width: 100%;
   max-width: 100%;
-  height: 100%;
-  max-height: 100%;
-  line-height: 30px;
-  padding: 0 10px;
+  min-height: 100%;
+
+  line-height: 32px;
+  padding: 0;
   border: 0;
   outline: 0;
   background: transparent;
-  color: #3f3f44;
+
+  color: #3c2f3d;
   font-family: 'Handlee', cursive;
-  font-size: 18px;
+  font-size: 21px;
+  font-weight: 500;
+  letter-spacing: 0.2px;
+
   box-sizing: border-box;
-  z-index: 1;
+  z-index: 2;
+  position: relative;
+}
+
+/* Mobile adjustment */
+@media (max-width: 600px) {
+  .paper {
+    width: 92%;
+    min-height: 470px;
+    padding: 20px;
+    border-radius: 22px;
+  }
+
+  .paper-content {
+    padding: 65px 22px 28px;
+    min-height: 400px;
+  }
+
+  .paper-content .teks {
+    font-size: 18px;
+    line-height: 30px;
+  }
+
+  .paper:before {
+    font-size: 12px;
+    padding: 9px 24px;
+  }
 }
 
 .kotak {
